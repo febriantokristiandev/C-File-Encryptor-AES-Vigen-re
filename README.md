@@ -1,79 +1,78 @@
 # C-File-Encryptor-AES-Vigenère
 
-## Deskripsi
+## Description
 
-**C-File-Encryptor-AES-Vigenère** adalah aplikasi command-line yang memungkinkan pengguna untuk mengenkripsi dan mendekripsi file menggunakan algoritma AES-256-CBC. Program ini juga mendukung perubahan ekstensi file untuk menandakan status enkripsi atau dekripsi. 
+**C-File-Encryptor-AES-Vigenère** is a simple command-line program that lets you encrypt and decrypt files using the AES-256-CBC method. It also automatically changes the file's extension to show whether it is encrypted or decrypted.
 
-## Fitur
+## Features
 
-- Enkripsi dan dekripsi file menggunakan AES-256.
-- Menghapus file input setelah enkripsi atau dekripsi selesai.
-- Menyimpan dan mengembalikan ekstensi file asli setelah dekripsi.
-- Menyediakan antarmuka pengguna berbasis teks sederhana.
+- Encrypt and decrypt files using AES-256.
+- Delete input files after encryption or decryption is completed.
+- Retain and restore the original file extension after decryption.
+- Provide a simple text-based user interface.
 
-## Instalasi
+## Installation
 
-### Di Windows
+### Windows
 
 1. **Install OpenSSL**:
-   - Unduh installer dari situs web resmi [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html).
-   - Jalankan installer dan ikuti petunjuknya.
-   - Tambahkan path ke OpenSSL bin folder (`C:\Program Files\OpenSSL-Win64\bin`) ke dalam variabel lingkungan `PATH`.
+   - Download the installer from the official [OpenSSL website](https://slproweb.com/products/Win32OpenSSL.html).
+   - Run the installer and follow the instructions.
+   - Add the path to the OpenSSL bin folder (`C:\Program Files\OpenSSL-Win64\bin`) to the `PATH` environment variable.
 
-2. **Kompilasi Program**:
-   - Buka Command Prompt atau terminal.
-   - Arahkan ke direktori yang berisi kode sumber.
-   - Gunakan perintah berikut untuk mengkompilasi program:
+2. **Compile the Program**:
+   - Open Command Prompt or terminal.
+   - Navigate to the directory containing the source code.
+   - Use the following command to compile the program:
      ```sh
      gcc -o file_encryptor main.c -lssl -lcrypto
      ```
 
-### Di Linux
+### Linux
 
 1. **Install OpenSSL**:
-   - Buka terminal.
-   - Instal OpenSSL menggunakan manajer paket:
+   - Open a terminal.
+   - Install OpenSSL using the package manager:
      ```sh
      sudo apt update
      sudo apt install libssl-dev
      ```
 
-2. **Kompilasi Program**:
-   - Arahkan ke direktori yang berisi kode sumber.
-   - Gunakan perintah berikut untuk mengkompilasi program:
+2. **Compile the Program**:
+   - Navigate to the directory containing the source code.
+   - Use the following command to compile the program:
      ```sh
      gcc -o file_encryptor main.c -lssl -lcrypto
      ```
 
-## Penggunaan
+## Usage
 
-1. **Jalankan Program**:
-   - Buka terminal atau Command Prompt.
-   - Arahkan ke direktori project. 
+1. **Run the Program**:
+   - Open a terminal or Command Prompt.
+   - Navigate to the project directory:
      ```sh
      cd c-file-encryptor-aes-vigenere
-     ./main.exe
      ```
-   - Jalankan program dengan perintah berikut:
+   - Run the program with the following command:
      ```sh
-     ./main.exe
+     ./file_encryptor
      ```
 
-2. **Operasi**:
-   - Pilih operasi yang diinginkan:
-     - Masukkan `1` untuk enkripsi.
-     - Masukkan `2` untuk dekripsi.
-     - Masukkan `3` untuk keluar dari program.
-   - Masukkan path file yang akan diproses. Program akan secara otomatis menambahkan ekstensi `.encrypted` untuk file terenkripsi dan mengembalikan ekstensi asli untuk file yang didekripsi.
+2. **Operations**:
+   - Select the desired operation:
+     - Enter `1` for encryption.
+     - Enter `2` for decryption.
+     - Enter `3` to exit the program.
+   - Enter the path of the file to be processed. The program will automatically add the `.encrypted` extension for encrypted files and restore the original extension for decrypted files.
 
-## Contoh
+## Examples
 
-1. **Enkripsi File**:
-   - Masukkan `1` untuk enkripsi.
-   - Masukkan path file yang akan dienkripsi, misalnya `document.txt`.
-   - File hasil enkripsi akan disimpan sebagai `document.encrypted`.
+1. **Encrypt a File**:
+   - Enter `1` for encryption.
+   - Enter the path of the file to be encrypted, e.g., `document.txt`.
+   - The encrypted file will be saved as `document.encrypted`.
 
-2. **Dekripsi File**:
-   - Masukkan `2` untuk dekripsi.
-   - Masukkan path file yang akan didekripsi, misalnya `document.encrypted`.
-   - File hasil dekripsi akan dikembalikan ke nama aslinya, yaitu `document.txt`.
+2. **Decrypt a File**:
+   - Enter `2` for decryption.
+   - Enter the path of the file to be decrypted, e.g., `document.encrypted`.
+   - The decrypted file will be restored to its original name, i.e., `document.txt`.
