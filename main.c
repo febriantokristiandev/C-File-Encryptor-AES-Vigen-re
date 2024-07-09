@@ -4,7 +4,7 @@
 #include <openssl/evp.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>
-#include <io.h> // Untuk _unlink() pada Windows
+#include <io.h> //  _unlink()
 
 #define AES_BLOCK_SIZE 16
 #define MAX_PATH 1024
@@ -31,7 +31,6 @@ void encryptFile(const char *inputFile, const char *outputFile, const unsigned c
         exit(EXIT_FAILURE);
     }
 
-    // Generate a random IV
     if (!RAND_bytes(iv, AES_BLOCK_SIZE)) {
         handleErrors();
     }
@@ -62,7 +61,6 @@ void encryptFile(const char *inputFile, const char *outputFile, const unsigned c
     fclose(inFile);
     fclose(outFile);
 
-    // Hapus file input setelah enkripsi selesai
     if (_unlink(inputFile) != 0) {
         perror("Error deleting file");
     } else {
@@ -85,7 +83,6 @@ void decryptFile(const char *inputFile, const char *outputFile, const unsigned c
         exit(EXIT_FAILURE);
     }
 
-    // Read IV from the input file
     fread(iv, 1, AES_BLOCK_SIZE, inFile);
 
     ctx = EVP_CIPHER_CTX_new();
@@ -113,7 +110,6 @@ void decryptFile(const char *inputFile, const char *outputFile, const unsigned c
     fclose(inFile);
     fclose(outFile);
 
-    // Hapus file input setelah dekripsi selesai
     if (_unlink(inputFile) != 0) {
         perror("Error deleting file");
     } else {
@@ -124,23 +120,23 @@ void decryptFile(const char *inputFile, const char *outputFile, const unsigned c
 void getInput(const char *prompt, char *input) {
     printf("%s", prompt);
     fgets(input, MAX_PATH, stdin);
-    input[strcspn(input, "\n")] = 0; // Remove newline character
+    input[strcspn(input, "\n")] = 0; 
 }
 
 void replaceExtension(char *filename, const char *newExt) {
     char *dot = strrchr(filename, '.');
     if (dot != NULL) {
-        *dot = '\0'; // Remove existing extension
+        *dot = '\0';
     }
-    strcat(filename, newExt); // Add new extension
+    strcat(filename, newExt); 
 }
 
 void restoreExtension(char *filename, const char *ext) {
     char *dot = strrchr(filename, '.');
     if (dot != NULL) {
-        *dot = '\0'; // Remove existing extension
+        *dot = '\0'; 
     }
-    strcat(filename, ext); // Add original extension
+    strcat(filename, ext); 
 }
 
 int main() {
@@ -170,7 +166,7 @@ int main() {
         getInput("", inputFile);
 
         if (strcmp(operation, "1") == 0) {
-            // Simpan ekstensi asli
+            // save ekstensi asli
             strcpy(originalExt, strrchr(inputFile, '.'));
             strcpy(outputFile, inputFile);
             replaceExtension(outputFile, ENCRYPTED_EXT);
@@ -182,10 +178,10 @@ int main() {
                 printf("Invalid file for decryption. It should have %s extension.\n", ENCRYPTED_EXT);
                 continue;
             }
-            // Kembalikan ekstensi asli
+
             strcpy(outputFile, inputFile);
-            outputFile[strlen(outputFile) - strlen(ENCRYPTED_EXT)] = '\0'; // Remove .encrypted extension
-            restoreExtension(outputFile, originalExt); // Restore original extension
+            outputFile[strlen(outputFile) - strlen(ENCRYPTED_EXT)] = '\0'; // delete .encrypted extension
+            restoreExtension(outputFile, originalExt); // restore original extension
             decryptFile(inputFile, outputFile, key);
             printf("Decryption complete. Decrypted file: %s\n", outputFile);
         }
