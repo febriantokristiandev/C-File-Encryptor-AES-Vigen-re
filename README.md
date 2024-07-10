@@ -55,7 +55,7 @@
      ```
    - Run the program with the following command:
      ```sh
-     ./file_encryptor
+     ./main.exe
      ```
 
 2. **Operations**:
